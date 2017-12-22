@@ -8,7 +8,7 @@ public class Const extends Expression {
 
     private final double val;
     
-    Const(double val)
+    public Const(double val)
     {
         this.val = val;
     }

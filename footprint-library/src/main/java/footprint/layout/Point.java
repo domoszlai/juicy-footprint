@@ -45,6 +45,19 @@ public class Point extends Shape {
     }
 
     /**
+     * Add constraints: 
+     * - this.X = xv
+     * - this.Y = yv
+     * @param xv
+     * @param yv
+     */
+    public void addConstraint(Expression xv, Expression yv)
+    {
+        x.addConstraint(xv);
+        y.addConstraint(yv);
+    }	
+	
+    /**
      * Add constraints:
      * - this.X = p.X + xv
      * - this.Y = p.Y + yv
@@ -57,7 +70,7 @@ public class Point extends Shape {
         x.addConstraint(p.getX().add(xv));
         y.addConstraint(p.getY().add(yv));
     }
-    
+    	
     /**
      * Add constraints:
      * - this.X = p.X + xv
