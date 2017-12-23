@@ -1,7 +1,4 @@
 apply plugin: 'scala'
-apply plugin: 'application'
-
-mainClassName = "HelloWorld"
     
 if (!hasProperty('mainClass')) {
     ext.mainClass = 'Main'

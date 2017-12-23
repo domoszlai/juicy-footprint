@@ -1,0 +1,14 @@
+apply plugin: 'scala'
+apply plugin: 'application'
+
+mainClassName = "Main"
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'Main'
+}
+
+dependencies {
+    compile project(':footprint-library-scala')
+    compile 'org.scala-lang:scala-library:2.12.4'
+}
+ 
