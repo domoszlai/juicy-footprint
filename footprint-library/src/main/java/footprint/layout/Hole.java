@@ -1,5 +1,7 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
+import footprint.engine.Variable;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -15,7 +17,7 @@ public class Hole extends Shape {
     private final Point right;
     
     private final Point center;
-    private final Size radius;
+    private final Variable radius;
     
     Hole(Layouter layout, String name)
     {
@@ -27,7 +29,7 @@ public class Hole extends Shape {
         right = layout.createPoint(name + ".Right");
         
         center = layout.createPoint(name + ".Center");
-        radius = layout.createSize(name + ".Radius");
+        radius = layout.createVariable(name + ".Radius");
     }
     
     public Point getCenter()
@@ -35,7 +37,7 @@ public class Hole extends Shape {
         return center;
     }
     
-    public Size getRadius()
+    public Variable getRadius()
     {
         return radius;
     }   
@@ -57,13 +59,13 @@ public class Hole extends Shape {
     }
     
     @Override
-    protected void generateConstraints() {
+    protected void generateConstraints() throws EngineMismatchException {
         top.addConstraint(center, 0, radius.negate());
         bottom.addConstraint(center, 0, radius);
         left.addConstraint(center, radius.negate(), 0);
         right.addConstraint(center, radius, 0);
         top.getX().addConstraint(bottom.getX());
-        left.getY().addConstraint(right.getX());
+        left.getY().addConstraint(right.getX());            
     }
     
     @Override

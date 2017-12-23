@@ -1,5 +1,7 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
+import footprint.engine.Variable;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -13,8 +15,8 @@ public class Pad extends Shape {
     private final Point topRight;
     private final Point bottomRight;    
     private final Point bottomLeft;
-    private final Size width;
-    private final Size height;
+    private final Variable width;
+    private final Variable height;
     
     private final Point center;
     private final Point centerTop;
@@ -37,8 +39,8 @@ public class Pad extends Shape {
         centerLeft = layout.createPoint(name+".CenterLeft");
         centerRight = layout.createPoint(name+".CenterRight");
         
-        width = layout.createSize(name+".Width");
-        height = layout.createSize(name+".Height");
+        width = layout.createVariable(name+".Width");
+        height = layout.createVariable(name+".Height");
     }
 
     public Point getTopLeft() {
@@ -77,16 +79,16 @@ public class Pad extends Shape {
         return centerRight;
     }
     
-    public Size getWidth() {
+    public Variable getWidth() {
         return width;
     }
 
-    public Size getHeight() {
+    public Variable getHeight() {
         return height;
     }
     
     @Override
-    protected void generateConstraints() {
+    protected void generateConstraints() throws EngineMismatchException {
         
         // TODO: what is the minimal set of equations I need?
         

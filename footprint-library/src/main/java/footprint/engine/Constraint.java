@@ -17,17 +17,13 @@ class Constraint {
         this.val = val;
     }
         
-    void updateA(Engine engine, SimpleMatrix m, int row) throws Exception
+    void updateA(SimpleMatrix m, int row)
     {
         for(Expression term : expr.getTerms())
         {
             if(term instanceof Variable)
             {
                 Variable var = (Variable)term;
-                
-                // To avoid strange errors
-                if(var.getEngine() != engine)
-                    throw new Exception("Variable \""+var.getName()+"\" was created under another engine");
                 
                 int col = var.getIndex();
                 m.set(row, col, m.get(row, col) + 1);
@@ -44,7 +40,7 @@ class Constraint {
             }
             else // Shouldn't be, but good to know if a mistake was made
             {
-                throw new Exception("Unexpected compund expression");
+                throw new RuntimeException("Unexpected compund expression");
             }
         }
     }

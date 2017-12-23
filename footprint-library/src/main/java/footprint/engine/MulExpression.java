@@ -9,8 +9,9 @@ public class MulExpression extends Expression {
     private final double factor;
     private final Variable var;
     
-    MulExpression(Variable var, double factor)
+    MulExpression(Engine engine, Variable var, double factor)
     {
+        super(engine);
         this.factor = factor;
         this.var = var;
     }
@@ -28,7 +29,7 @@ public class MulExpression extends Expression {
     @Override
     public Expression mul(double newFactor)
     {
-        return new MulExpression(var, factor*newFactor);
+        return new MulExpression(getEngine(), var, factor*newFactor);
     }
     
     @Override

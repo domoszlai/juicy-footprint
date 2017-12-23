@@ -1,6 +1,9 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
 import footprint.engine.Expression;
+import footprint.engine.Variable;
+
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -10,23 +13,23 @@ import javafx.geometry.Bounds;
  */
 public class Point extends Shape {
  
-    private final Size x; 
-    private final Size y;
+    private final Variable x; 
+    private final Variable y;
     
     Point(Layouter layout, String name)
     {
         super(layout, name);
         
-        x = layout.createSize(name+".X");
-        y = layout.createSize(name+".Y");
+        x = layout.createVariable(name+".X");
+        y = layout.createVariable(name+".Y");
     }
     
-    public Size getX()
+    public Variable getX()
     {
         return x;
     }
 
-    public Size getY()
+    public Variable getY()
     {
         return y;
     }
@@ -50,8 +53,9 @@ public class Point extends Shape {
      * - this.Y = yv
      * @param xv
      * @param yv
+     * @throws footprint.engine.EngineMismatchException
      */
-    public void addConstraint(Expression xv, Expression yv)
+    public void addConstraint(Expression xv, Expression yv) throws EngineMismatchException
     {
         x.addConstraint(xv);
         y.addConstraint(yv);
@@ -64,8 +68,9 @@ public class Point extends Shape {
      * @param p
      * @param xv
      * @param yv
+     * @throws footprint.engine.EngineMismatchException
      */
-    public void addConstraint(Point p, double xv, double yv)
+    public void addConstraint(Point p, double xv, double yv) throws EngineMismatchException
     {
         x.addConstraint(p.getX().add(xv));
         y.addConstraint(p.getY().add(yv));
@@ -78,8 +83,9 @@ public class Point extends Shape {
      * @param p
      * @param xv
      * @param yv
+     * @throws footprint.engine.EngineMismatchException
      */
-    public void addConstraint(Point p, Expression xv, Expression yv)
+    public void addConstraint(Point p, Expression xv, Expression yv) throws EngineMismatchException
     {
         x.addConstraint(p.getX().add(xv));
         y.addConstraint(p.getY().add(yv));
@@ -92,8 +98,9 @@ public class Point extends Shape {
      * @param p
      * @param xv
      * @param yv
+     * @throws footprint.engine.EngineMismatchException
      */    
-    public void addConstraint(Point p, double xv, Expression yv)
+    public void addConstraint(Point p, double xv, Expression yv) throws EngineMismatchException
     {
         x.addConstraint(p.getX().add(xv));
         y.addConstraint(p.getY().add(yv));
@@ -106,8 +113,9 @@ public class Point extends Shape {
      * @param p
      * @param xv
      * @param yv
+     * @throws footprint.engine.EngineMismatchException
      */    
-    public void addConstraint(Point p, Expression xv, double yv)
+    public void addConstraint(Point p, Expression xv, double yv) throws EngineMismatchException
     {
         x.addConstraint(p.getX().add(xv));
         y.addConstraint(p.getY().add(yv));
@@ -119,8 +127,9 @@ public class Point extends Shape {
      * - this.X = p.X
      * - this.Y = p.Y
      * @param p
+     * @throws footprint.engine.EngineMismatchException
      */    
-    public void addConstraint(Point p)
+    public void addConstraint(Point p) throws EngineMismatchException
     {
         x.addConstraint(p.getX());
         y.addConstraint(p.getY());

@@ -1,8 +1,10 @@
 package footprint.layout;
 
 import footprint.engine.Engine;
+import footprint.engine.EngineMismatchException;
 import footprint.engine.Expression;
 import footprint.engine.Solution;
+import footprint.engine.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +22,9 @@ public class Layouter {
         this.engine = new Engine();
     }
         
-    public Size createSize(String name)
+    public Variable createVariable(String name)
     {
-        return new Size(this, engine.createVariable(name));
+        return engine.createVariable(name);
     }
     
     public Point createPoint(String name)
@@ -66,64 +68,58 @@ public class Layouter {
         shapes.add(h);
         return h;        
     }
-    
-    /**
-     * Add constraint: expr = val
-     * @param expr
-     * @param val
-     */
-    public void addConstraint(Expression expr, double val)
+
+    public Pad createPad(String name, double width, double height)
     {
-        engine.addConstraint(expr, val);
+        Pad h = new Pad(this, name);
+        shapes.add(h);
+        h.getWidth().addConstraint(width);
+        h.getHeight().addConstraint(height);
+        return h;        
     }
 
-    /**
-     * Add constraint: expr1 = expr2
-     * @param expr1
-     * @param expr2
-     */    
-    public void addConstraint(Expression expr1, Expression expr2)
+    public Pad createPad(String name, double width, Expression height) throws EngineMismatchException
     {
-        engine.addConstraint(expr1, expr2);
-    }    
-
-    /**
-     * Add constraints: 
-     * - p1.X = p2.x
-     * - p1.Y = p2.Y
-     * @param p1
-     * @param p2
-     */    
-    public void addConstraint(Point p1, Point p2)
-    {
-        engine.addConstraint(p1.getX(), p2.getX());
-        engine.addConstraint(p1.getY(), p2.getY());
-    }
-
-    /**
-     * Add constraint:
-     * - p.X  = x
-     * - p.Y  = y
-     * @param p
-     * @param x
-     * @param y
-     */
-    public void addConstraint(Point p, double x, double y)
-    {
-        engine.addConstraint(p.getX(), x);
-        engine.addConstraint(p.getY(), y);
+        Pad h = new Pad(this, name);
+        shapes.add(h);
+        h.getWidth().addConstraint(width);
+        h.getHeight().addConstraint(height);
+        return h;        
     }
         
+    public Pad createPad(String name, Expression width, double height) throws EngineMismatchException
+    {
+        Pad h = new Pad(this, name);
+        shapes.add(h);
+        h.getWidth().addConstraint(width);
+        h.getHeight().addConstraint(height);
+        return h;        
+    }
+	
+    public Pad createPad(String name, Expression width, Expression height) throws EngineMismatchException
+    {
+        Pad h = new Pad(this, name);
+        shapes.add(h);
+        h.getWidth().addConstraint(width);
+        h.getHeight().addConstraint(height);
+        return h;        
+    }
+            
     public List<Shape> getShapes()
     {
         return shapes;
     }
     
-    public Layout generate() throws Exception
+    public Layout generate()
     {
         for(Shape shape : shapes)
         {
-            shape.generateConstraints();
+            try {
+                shape.generateConstraints();
+            } catch (EngineMismatchException ex) {
+                // Should not happen in generateConstraints
+                throw new RuntimeException("Unexpected EngineMismatchException");
+            }
         }
         
         Solution solution = engine.solve();

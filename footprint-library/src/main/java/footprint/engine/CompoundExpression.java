@@ -11,13 +11,17 @@ public class CompoundExpression extends Expression {
 
     private final List<Expression> terms;
 
-    CompoundExpression(List<Expression> terms) 
+    
+    CompoundExpression(Engine engine, List<Expression> terms) 
     {
+        super(engine);
         this.terms = terms;
     }
         
-    CompoundExpression(Expression expr, Expression addExpr) 
+    CompoundExpression(Engine engine, Expression expr, Expression addExpr) 
     {
+        super(engine);
+        
         terms = new ArrayList<>(expr.getTerms());
 
         // This step ensures that the list always contains primitive Expressions only
@@ -36,7 +40,7 @@ public class CompoundExpression extends Expression {
             nt.add(term.mul(newFactor));
         });
         
-        return new CompoundExpression(nt);
+        return new CompoundExpression(getEngine(), nt);
     }    
     
     @Override

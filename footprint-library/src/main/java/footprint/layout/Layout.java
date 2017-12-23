@@ -1,6 +1,7 @@
 package footprint.layout;
 
 import footprint.engine.Solution;
+import footprint.engine.Variable;
 import java.util.List;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
@@ -20,9 +21,9 @@ public class Layout {
         this.solution = solution;
     }
     
-    public double getValue(Size size)
+    public double getValue(Variable var)
     {
-        return solution.getValue(size.getVar());
+        return solution.getValue(var);
     }
     
     public List<Shape> getShapes()

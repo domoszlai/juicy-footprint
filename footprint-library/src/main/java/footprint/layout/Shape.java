@@ -1,5 +1,6 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
 import javafx.geometry.Bounds;
 
 /**
@@ -28,5 +29,5 @@ public abstract class Shape {
     }
 
     public abstract Bounds getBounds(Layout layout);
-    protected abstract void generateConstraints(); 
+    protected abstract void generateConstraints() throws EngineMismatchException; 
 }

@@ -1,5 +1,6 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -15,10 +16,10 @@ public class HorizontalLine extends Line {
     }
 
     @Override
-    protected void generateConstraints() {
+    protected void generateConstraints() throws EngineMismatchException {
         getP1().getY().addConstraint(getP2().getY());
         getP2().getX().addConstraint(getP1().getX().add(getLength()));
-        getLength().addConstraint(getP2().getX().subtract(getP1().getX()));
+        getLength().addConstraint(getP2().getX().subtract(getP1().getX()));            
     }
     
     @Override

@@ -10,6 +10,7 @@ public class Const extends Expression {
     
     public Const(double val)
     {
+        super(null); // Const does not depend on an engine
         this.val = val;
     }
     

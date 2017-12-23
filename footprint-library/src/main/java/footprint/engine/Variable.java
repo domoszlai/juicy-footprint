@@ -8,24 +8,18 @@ public class Variable extends Expression {
     
     private final String name;
     private final int index;
-    private final Engine engine;
     
     Variable(Engine engine, String name, int index)
     {
-        this.engine = engine;
+        super(engine);
         this.name = name;
         this.index = index;
     }
-    
-    Engine getEngine()
-    {
-        return engine;
-    }
-    
+        
     @Override
     public Expression mul(double factor)
     {
-        return new MulExpression(this, factor);
+        return new MulExpression(getEngine(), this, factor);
     }
     
     int getIndex()

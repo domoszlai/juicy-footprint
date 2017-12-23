@@ -1,5 +1,7 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
+import footprint.engine.Variable;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -13,8 +15,8 @@ public class Rect extends Shape {
     private final HorizontalLine bottom;
     private final VerticalLine left;
     private final VerticalLine right;
-    private final Size width;
-    private final Size height;
+    private final Variable width;
+    private final Variable height;
     
     Rect(Layouter layout, String name)
     {
@@ -25,8 +27,8 @@ public class Rect extends Shape {
         left = layout.createVerticalLine(name+".Left");
         right = layout.createVerticalLine(name+".Right");
         
-        width = layout.createSize(name+".Width");
-        height = layout.createSize(name+".height");
+        width = layout.createVariable(name+".Width");
+        height = layout.createVariable(name+".height");
     }
     
     public HorizontalLine getTop()
@@ -49,8 +51,16 @@ public class Rect extends Shape {
         return right;
     }
 
+    public Variable getWidth() {
+        return width;
+    }
+
+    public Variable getHeight() {
+        return height;
+    }
+    
     @Override
-    protected void generateConstraints() {
+    protected void generateConstraints() throws EngineMismatchException {
         top.getP1().addConstraint(left.getP1());
         top.getP2().addConstraint(right.getP1());
         bottom.getP1().addConstraint(left.getP2());

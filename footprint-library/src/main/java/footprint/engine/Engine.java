@@ -26,8 +26,13 @@ public class Engine {
         constraints.add(new Constraint(expr, val));
     }
 
-    public void addConstraint(Expression expr1, Expression expr2)
+    public void addConstraint(Expression expr1, Expression expr2) throws EngineMismatchException
     {
+        Engine exprEngine = Expression.getVerifyEngines(expr1, expr2);
+        
+        if(exprEngine != null && exprEngine != this)
+                        throw new EngineMismatchException();
+        
         constraints.add(new Constraint(expr1.add(expr2.negate()), 0));
     }    
 
@@ -41,14 +46,14 @@ public class Engine {
         return variables.get(index);
     }
     
-    public Solution solve() throws Exception
+    public Solution solve()
     {
         SimpleMatrix A = new SimpleMatrix(constraints.size(),variables.size());
         SimpleMatrix b = new SimpleMatrix(constraints.size(),1);
                 
         for(int i=0; i<constraints.size(); i++)
         {
-            constraints.get(i).updateA(this, A, i);
+            constraints.get(i).updateA(A, i);
             b.set(i, 0, constraints.get(i).getConstant());
         }
         

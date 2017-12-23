@@ -1,5 +1,6 @@
 package footprint.layout;
 
+import footprint.engine.EngineMismatchException;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 
@@ -15,9 +16,9 @@ public class VerticalLine extends Line {
     }
 
     @Override
-    protected void generateConstraints() {
+    protected void generateConstraints() throws EngineMismatchException {
         getP1().getX().addConstraint(getP2().getX());
-        getLength().addConstraint(getP2().getY().subtract(getP1().getY()));
+        getLength().addConstraint(getP2().getY().subtract(getP1().getY()));            
     }
     
     @Override

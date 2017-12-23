@@ -1,5 +1,7 @@
 package footprint.layout;
 
+import footprint.engine.Variable;
+
 /**
  *
  * @author dlacko
@@ -8,7 +10,7 @@ public abstract class Line extends Shape {
     
     private final Point p1;
     private final Point p2;
-    private final Size length;
+    private final Variable length;
     
     Line(Layouter layout, String name)
     {
@@ -16,7 +18,7 @@ public abstract class Line extends Shape {
         
         p1 = layout.createPoint(name + ".P1");
         p2 = layout.createPoint(name + ".P2");
-        length = layout.createSize(name + ".Length");
+        length = layout.createVariable(name + ".Length");
     }
 
     public Point getP1()
@@ -29,7 +31,7 @@ public abstract class Line extends Shape {
         return p2;
     }
     
-    public Size getLength() {
+    public Variable getLength() {
         return length;
     }    
 }
