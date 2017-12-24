@@ -1,7 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'scala'
+
 if (!hasProperty('mainClass')) {
     ext.mainClass = ''
 }
 
 dependencies {
     compile group: 'org.ejml', name: 'ejml-all', version: '0.32'
+    compile 'org.scala-lang:scala-library:2.12.4'
 }

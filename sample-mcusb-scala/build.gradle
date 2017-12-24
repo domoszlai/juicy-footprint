@@ -8,7 +8,7 @@ if (!hasProperty('mainClass')) {
 }
 
 dependencies {
-    compile project(':footprint-library-scala')
+    compile project(':footprint-library')
     compile 'org.scala-lang:scala-library:2.12.4'
 }
  
