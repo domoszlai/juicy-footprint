@@ -26,29 +26,44 @@ Alternatively, you can build from the source code as follows:
 * `$ git clone https://github.com/domoszlai/juicy-footprint.git`
 * `$ gradle build`
 
-## Usage
+## The DSL
 
 With juicy-footprint one creates shapes and defines relations between their properties. The available shapes and their properties are 
 the following:
 
-* Variable: the basic unit 
-* Point
+* **Variable:** relations can be defined between variables
+* **Point**
   * x (Variable)
   * y (Variable)
-* HorizontalLine 
+* **HorizontalLine, VerticalLine** 
   * p1 (Point)
   * p2 (Point)
   * length (Variable) 
-* VericalLine 
-  * p1 (Point)
-  * p2 (Point)
-  * length (Variable) 
-* Rect
+* **Rect**
   * top (HorizontalLine)  
   * bottom (HorizontalLine)
   * left (VerticalLine)  
   * right (VerticalLine)  
   * width (Variable)  
+  * height (Variable)
+* **Hole**
+  * top (Point)
+  * bottom (Point)
+  * left (Point)
+  * right (Point)
+  * center (Point)
+  * radius (Variable)
+* **Pad**
+  * topLeft (Point)
+  * topRight (Point)
+  * bottomReft (Point)
+  * bottomRight (Point)
+  * center (Point)
+  * centerTop (Point)
+  * centerBottom (Point)
+  * centerLeft (Point)  
+  * centerRight (Point)  
+  * width (Variable)
   * height (Variable)
   
 ## Implementation
