@@ -33,38 +33,44 @@ the following:
 
 * **Variable:** relations can be defined between variables
 * **Point**
-  * x (Variable)
-  * y (Variable)
+  * x: Variable
+  * y: Variable
 * **HorizontalLine, VerticalLine** 
-  * p1 (Point)
-  * p2 (Point)
-  * length (Variable) 
+  * p1: Point
+  * p2: Point
+  * length: Variable 
 * **Rect**
-  * top (HorizontalLine)  
-  * bottom (HorizontalLine)
-  * left (VerticalLine)  
-  * right (VerticalLine)  
-  * width (Variable)  
-  * height (Variable)
+  * top: HorizontalLine
+  * bottom: HorizontalLine
+  * left: VerticalLine  
+  * right: VerticalLine  
+  * width: Variable
+  * height: Variable
 * **Hole**
-  * top (Point)
-  * bottom (Point)
-  * left (Point)
-  * right (Point)
-  * center (Point)
-  * radius (Variable)
+  * top: Point
+  * bottom: Point
+  * left: Point
+  * right: Point
+  * center: Point
+  * radius: Variable
 * **Pad**
-  * topLeft (Point)
-  * topRight (Point)
-  * bottomReft (Point)
-  * bottomRight (Point)
-  * center (Point)
-  * centerTop (Point)
-  * centerBottom (Point)
-  * centerLeft (Point)  
-  * centerRight (Point)  
-  * width (Variable)
-  * height (Variable)
+  * topLeft: Point
+  * topRight: Point
+  * bottomReft: Point
+  * bottomRight: Point
+  * center: Point
+  * centerTop: Point
+  * centerBottom: Point
+  * centerLeft: Point 
+  * centerRight: Point  
+  * width: Variable
+  * height: Variable
+
+The relations between Variables must be linear, only addition and multiplication with a constant are allowed. 
+  
+### Java
+
+### Scala  
   
 ## Implementation
 
