@@ -10,7 +10,7 @@ footprints from the Recommended PCB Layout of the datasheet of an SMD component.
 are usually given as engineering drawings where the distances between the parts are relative to each other.
 Most EDA applications, however, e.g. Eagle, requires SMD footprints to be given in absolute coordinates. 
 
-<img align="right" src="sample-mcusb-java/docs/pcb-layout.png">
+<img align="right" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/pcb_layout.png">
 
 Figuring out absolute coordinates from engineering drawings can be exhausting. Juicy-footprint is designed
 to help with resolving this impedance mismatch. The drawings can be directly represented with the Juicy-footprint DSL,
@@ -27,6 +27,8 @@ Alternatively, you can build from the source code as follows:
 * `$ gradle build`
 
 ## Usage
+
+
 
 ## Implementation
 
