@@ -1,4 +1,4 @@
-Juicy-footprint: An SMD Footprint reconstruction DSL
+Juicy-footprint: An SMD Footprint designer DSL
 ==================================
 
 [![Travis](https://travis-ci.org/domoszlai/juicy-footprint.svg?branch=master)](http://travis-ci.org/domoszlai/juicy-footprint)
@@ -7,7 +7,7 @@ Juicy-footprint: An SMD Footprint reconstruction DSL
 
 <img align="right" width="345" height="271" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/pcb_layout.png">
 
-Juicy-footprint is a domain specific language written in/for Java and Scala to reconstruct SMD
+Juicy-footprint is a domain specific language written in/for Java and Scala to design/reconstruct SMD
 footprints from the Recommended PCB Layout of the datasheet of an SMD component. Recommended PCB Layouts
 are usually given as engineering drawings where the distances between the parts are relative to each other.
 Most EDA applications, however, e.g. Eagle, requires SMD footprints to be given in absolute coordinates. 
@@ -66,6 +66,8 @@ the following:
   * width: Variable
   * height: Variable
 
+<img align="right" width="320" height="70" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/generated_layout.png">
+  
 The constraints must be linear, only addition and multiplication with a constant are allowed. 
 As a basic example, the following pseudocode creates two pads the same size, and defines a distance of 6.4mm between their center points:   
 
@@ -98,7 +100,7 @@ Unfortunately the lack of some language features, e.g. operator overloading and 
 unintuitive and cumbersome. 
 
 Subproject [sample-mcusb-java](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/src/main/java/Main.java)
-contains describes the layout of a [micro USB connector](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/(t-t)_mcusb-b-s05pfhsbth.pdf)
+describes the footprint of a [micro USB connector](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/(t-t)_mcusb-b-s05pfhsbth.pdf)
 as a full-fledged example. 
 
 ### Scala  
@@ -115,8 +117,10 @@ b.centerTop ~= a.centerTop + (6.4, 0);
 ```
 
 Subproject [sample-mcusb-scala](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-scala/src/main/scala/Main.java)
-contains describes the layout of a [micro USB connector](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/(t-t)_mcusb-b-s05pfhsbth.pdf)
+describes the footprint of a [micro USB connector](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/(t-t)_mcusb-b-s05pfhsbth.pdf)
 as a full-fledged example. 
   
 ## Implementation
 
+Juicy-footprint is based on the [EJML](ejml.org) linear algebra library to solve the linear equation system defined by the constraints
+between the variables. It uses javafx to display the footprints.
