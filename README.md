@@ -5,12 +5,12 @@ Juicy-footprint: An SMD Footprint reconstruction DSL
 
 ## Synopsis
 
+<img align="right" width="345" height="271" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/pcb_layout.png">
+
 Juicy-footprint is a domain specific language written in/for Java and Scala to reconstruct SMD
 footprints from the Recommended PCB Layout of the datasheet of an SMD component. Recommended PCB Layouts
 are usually given as engineering drawings where the distances between the parts are relative to each other.
 Most EDA applications, however, e.g. Eagle, requires SMD footprints to be given in absolute coordinates. 
-
-<img align="right" width="345" height="271" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/pcb_layout.png">
 
 Figuring out absolute coordinates from engineering drawings can be exhausting. Juicy-footprint is designed
 to help with resolving this impedance mismatch. The drawings can be directly represented with the Juicy-footprint DSL,
@@ -28,7 +28,28 @@ Alternatively, you can build from the source code as follows:
 
 ## Usage
 
+With juicy-footprint one creates shapes and defines relations between their properties. The available shapes and their properties are 
+the following:
 
-
+* Variable: the basic unit 
+* Point
+  * x (Variable)
+  * y (Variable)
+* HorizontalLine 
+  * p1 (Point)
+  * p2 (Point)
+  * length (Variable) 
+* VericalLine 
+  * p1 (Point)
+  * p2 (Point)
+  * length (Variable) 
+* Rect
+  * top (HorizontalLine)  
+  * bottom (HorizontalLine)
+  * left (VerticalLine)  
+  * right (VerticalLine)  
+  * width (Variable)  
+  * height (Variable)
+  
 ## Implementation
 
