@@ -12,7 +12,7 @@ footprints from the Recommended PCB Layout of the datasheet of an SMD component.
 are usually given as engineering drawings where the distances between the parts are relative to each other.
 Most EDA applications, however, e.g. Eagle, requires SMD footprints to be given in absolute coordinates. 
 
-Figuring out absolute coordinates from engineering drawings can be exhausting. Juicy-footprint is designed
+Figuring out absolute coordinates from engineering drawings can be exhausting and error-prone. Juicy-footprint is designed
 to help with resolving this impedance mismatch. The drawings can be directly represented with the Juicy-footprint DSL,
 which, when executed, provides absolute coordinates and displays the footprint.
 
@@ -28,7 +28,7 @@ Alternatively, you can build from the source code as follows:
 
 ## The DSL
 
-With juicy-footprint one creates shapes and defines relations between their properties. The available shapes and their properties are 
+With juicy-footprint one creates shapes and defines relations between their properties (called *constraints*). The available shapes and their properties are 
 the following:
 
 * **Variable:** relations can be defined between variables
@@ -66,9 +66,36 @@ the following:
   * width: Variable
   * height: Variable
 
-The relations between Variables must be linear, only addition and multiplication with a constant are allowed. 
+The constraints must be linear, only addition and multiplication with a constant are allowed. 
+As a basic example, the following pseudocode creates two pads the same size, and defines a distance of 6.4mm between their center points:   
+
+```
+        var a = createPad()
+		a.width = 1.5
+		a.height = 1
+        var b = createPad()
+        b.width = a.width
+		b.height = a.height
+		
+        b.centerTop.x = a.centerTop.x + 6.4
+		b.centerTop.y = a.centerTop.y
+```  
   
 ### Java
+
+The same code in Java would be as follows:
+
+```java
+        Layouter l = new Layouter();
+
+        Pad a = l.createPad("A", 1.5, 1);
+        Pad b = l.createPad("B", a.getWidth(), a.getHeight());
+        
+        b.getCenterTop().addConstraint(a.getCenterTop(), 6.4, 0);
+```
+
+Unfortunately the lack of some language features, e.g. operator overloading and properties, in Java, makes the code
+very unintuitive and cumbersome. 
 
 ### Scala  
   
