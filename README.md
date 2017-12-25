@@ -65,8 +65,6 @@ the following:
   * centerRight: Point  
   * width: Variable
   * height: Variable
-
-<img align="right" width="320" height="70" src="https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/generated_layout.png">
   
 The constraints must be linear, only addition and multiplication with a constant are allowed. 
 As a basic example, the following pseudocode creates two pads the same size, and defines a distance of 6.4mm between their center points:   
@@ -124,3 +122,5 @@ as a full-fledged example.
 
 Juicy-footprint is based on the [EJML](ejml.org) linear algebra library to solve the linear equation system defined by the constraints
 between the variables. It uses javafx to display the footprints.
+
+![Generated layout](https://github.com/domoszlai/juicy-footprint/blob/master/sample-mcusb-java/docs/generated_layout.png)
