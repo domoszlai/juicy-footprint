@@ -1,5 +1,4 @@
-Juicy-footprint: An SMD Footprint designer DSL
-==================================
+# Juicy-footprint: An SMD Footprint designer DSL
 
 [![Travis](https://travis-ci.org/domoszlai/juicy-footprint.svg?branch=master)](http://travis-ci.org/domoszlai/juicy-footprint)
 
@@ -15,6 +14,8 @@ Most EDA applications, however, e.g. Eagle, requires SMD footprints to be given 
 Figuring out absolute coordinates from engineering drawings can be exhausting and error-prone. Juicy-footprint is designed
 to help with resolving this impedance mismatch. The drawings can be directly represented with the Juicy-footprint DSL,
 which, when executed, provides absolute coordinates and displays the footprint.
+
+For a tutorial of its usage visit [http://dlacko.blogspot.com/2018/01/scala-smd-footprint-designer-dsl.html](http://dlacko.blogspot.com/2018/01/scala-smd-footprint-designer-dsl.html).
 
 ## Installation
 
@@ -67,7 +68,7 @@ the following:
   * height: Variable
   
 The constraints must be linear, only addition and multiplication with a constant are allowed. 
-As a basic example, the following pseudocode creates two pads the same size, and defines a distance of 6.4mm between their center points:   
+As a basic example, the following pseudo-code creates two pads the same size, and defines a distance of 6.4mm between their center points:   
 
 ```
 var a = createPad()
