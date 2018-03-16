@@ -15,7 +15,7 @@ Figuring out absolute coordinates from engineering drawings can be exhausting an
 to help with resolving this impedance mismatch. The drawings can be directly represented with the Juicy-footprint DSL,
 which, when executed, provides absolute coordinates and displays the footprint.
 
-For a tutorial of its usage visit [http://dlacko.blogspot.com/2018/01/scala-smd-footprint-designer-dsl.html](http://dlacko.blogspot.com/2018/01/scala-smd-footprint-designer-dsl.html).
+For a tutorial of its usage visit http://dlacko.org/blog/2018/01/10/scala-smd-footprint-designer-dsl/.
 
 ## Installation
 
